@@ -1,0 +1,52 @@
+<html><head>
+<meta charset="utf-8">
+<title>List</title>
+<style>
+  table {
+    border-collapse: collapse; /* 合併表格的邊框，避免有雙線出現 */
+    width: 100%; /* 使表格寬度充滿頁面 */
+  }
+  td, th {
+    border: none; /* 去掉每個表格儲存格的邊框 */
+    padding: 8px; /* 加一點內距讓文字和表格邊緣保持距離 */
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* 增加偶數行的背景顏色，方便閱讀 */
+  }
+</style>
+</head>
+<body>
+<p>清單</p>
+<hr />
+<table width="200" border="1">
+  <tr>
+    <td>id</td>
+    <td>Job Name</td>
+	  <td>Job Content</td>
+  
+    <td>status</td>
+    <td>dueDate</td>
+  </tr>
+  {% for rec in data %}  <!--這是 Jinja2 的 for 迴圈語句，用來遍歷 data 中的每一筆資料-->
+    {% if rec.status ==0%}<!--利用樣板本來的功能過濾掉資料-->
+	<tr>
+		<td><a href="/delete?id={{rec.id}}">刪除</a>{{rec.id}}</td>
+		<td>{{rec.jobname}}</td>
+		<td>{{rec.jobcontent}}</td>
+<td>{{rec.status}}</td>  
+<td>{{rec.dueDate}}<a href="/setfinish?id={{rec.id}}">完工</a></td><!--get 參數，遭做id-->
+</tr>
+ 
+    {% else %}
+    <tr>
+      <td><a href="/delete?id={{rec.id}}">刪除</a>{{rec.id}}</td>
+      <td>{{rec.jobname}}</td>
+      <td>{{rec.jobcontent}}</td>
+      <td>已完成</td>
+      <td></td>
+      {% endif %}
+  {% endfor %}
+</table>
+<a href="/">go Home</a>
+</body></html>
+

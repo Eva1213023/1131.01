@@ -1,0 +1,24 @@
+<html><head>
+<meta charset="utf-8">
+<title>List</title></head>
+<body>
+<p>清單</p>
+<hr />
+<table width="200" border="1">
+  <tr>
+    <td>name</td>
+    <td>Preference</td>
+  </tr>
+    {% for aa in data %} <!--忍者2號，依這這標籤的語法塞到網站-->
+	<tr>
+		{% if aa.name %} <!--aa是自己取的標籤-->
+			<td>{{aa.name}}</td><td>{{aa.p}}</td>
+		{% else %}
+			<td>無名氏</td><td>不處理</td>
+		{% endif %}
+	</tr>
+    {% endfor %}
+</table>
+<a href="/">go Home</a>
+</body></html>
+
